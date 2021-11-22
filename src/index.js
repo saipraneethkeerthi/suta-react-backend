@@ -13,17 +13,9 @@ require("./database/connect")
 
 // app.use('/',userSchemadata)
 
-app.post('/userPostData', (req, res) => {
-	console.log(req.body)
-	userSchemadata.insertMany(req.body)
-	res.send("done")
-})
 
-app.post('/validateDetails', (req, res) => {
-	console.log(req.body)
-	userSchemadata.find(req.body, (err, data) => res.status(200).send(data))
 
-})
+
 
 app.listen(port, () =>
 	console.log("Listening on port: " + port)
