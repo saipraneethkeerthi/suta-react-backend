@@ -6,52 +6,30 @@ const jwt = require("jsonwebtoken");
 const router = new express.Router();
 
 router.get("/userGetData", (req, res) => {
-  console.log("database post");
-  const storeddata = user.find({});
-  console.log(storeddata);
-  res.status(200).send("");
+	console.log("database post");
+	const storeddata = user.find({});
+	console.log(storeddata);
+	res.status(200).send("");
 });
 router.post("/signup", (req, res) => {
-  const body = req.body;
-  console.log(body);
-  user.insertMany(req.body).then((data) => res.status(200).send(data));
+	const body = req.body;
+	console.log(body);
+	user.insertMany(req.body).then((data) => res.status(200).send(data));
 });
+
 router.post("/login", (req, res) => {
-  const body = req.body;
-//   console.log(body);
-  user.findOne(body).then((data) => {
-    const tokenGen = jwt.sign({ sub: data._doc._id }, config.secret, {
-      expiresIn: "7d",
-    });
-    const newDate = { ...data._doc, token: tokenGen };
-    // data.token=tokenGen
-    // console.log(newDate)
-    res.status(200).send(newDate);
-  });
+	const body = req.body;
+	//   console.log(body);
+	user.findOne(body).then((data) => {
+		const tokenGen = jwt.sign({ sub: data._doc._id }, config.secret, {
+			expiresIn: "7d",
+		});
+		const newDate = { ...data._doc, token: tokenGen };
+		// data.token=tokenGen
+		// console.log(newDate)
+		res.status(200).send(newDate);
+	});
 });
 
-router.get("/products",(req,res)=>{
-	
-});
-
-router.get("/products/id",(req,res)=>{
-
-});
-
-router.post("/products",(req,res)=>{
-
-});
-
-router.put("/products/id",(req,res)=>{
-
-});
-
-router.delete("/delete_product/id",(req,res)=>{
-
-});
-
-router.delete("/delete_product",(req,res)=>{
-
-});
 
 module.exports = router;
