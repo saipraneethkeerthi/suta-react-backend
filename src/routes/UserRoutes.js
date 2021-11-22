@@ -18,9 +18,9 @@ router.post("/signup", (req, res) => {
 });
 router.post("/login", (req, res) => {
   const body = req.body;
-  console.log(body);
+//   console.log(body);
   user.findOne(body).then((data) => {
-    const tokenGen = jwt.sign({ sub: data._id }, config.secret, {
+    const tokenGen = jwt.sign({ sub: data._doc._id }, config.secret, {
       expiresIn: "7d",
     });
     const newDate = { ...data._doc, token: tokenGen };
