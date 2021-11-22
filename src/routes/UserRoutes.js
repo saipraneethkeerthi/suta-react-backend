@@ -1,6 +1,6 @@
 //Importing express and router
 const express = require("express");
-const user = require("../schema/userschema");
+const user = require("../Schema/UserSchema");
 const config = require("../config.json");
 const jwt = require("jsonwebtoken");
 const router = new express.Router();
@@ -23,10 +23,16 @@ router.post("/login", (req, res) => {
     const tokenGen = jwt.sign({ sub: data._doc._id }, config.secret, {
       expiresIn: "7d",
     });
-    const newDate = { ...data._doc, token: tokenGen };
+    const newData = { ...data._doc, token: tokenGen };
     // data.token=tokenGen
-    // console.log(newDate)
-    res.status(200).send(newDate);
+    // console.log(newDate) 
+	if(newData){  
+
+		res.status(200).send(newData);
+	}
+	else{
+		console.log("erre")
+	}
   });
 });
 module.exports = router;
