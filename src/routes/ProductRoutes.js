@@ -17,12 +17,15 @@ router.get("/products", (req, res) => {
 });
 
 router.get("/products/id", (req, res) => {
-
+	let id_val=req.params.id
+	console.log(id_val)
 
 });
 
 router.post("/products", (req, res) => {
-
+	const body = req.body;
+	console.log(body);
+	user.insertMany(req.body).then((data) => res.status(200).send(data));
 });
 
 router.put("/products/id", (req, res) => {

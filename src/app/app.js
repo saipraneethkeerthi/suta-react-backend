@@ -20,6 +20,7 @@ const cors = require('cors')
 app.use(cors())
 const userroutes = require('../routes/UserRoutes')
 app.use("/", userroutes)
+
 app.use(express.urlencoded({ extended: true }))
 
 
