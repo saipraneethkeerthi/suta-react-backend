@@ -17,7 +17,6 @@ const UserSchema = new mongoose.Schema({
 
 });
 
-
 //assigning model to const variable
 const User = mongoose.model("User", UserSchema);
 
