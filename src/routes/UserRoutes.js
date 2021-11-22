@@ -15,7 +15,10 @@ router.get('/userGetData', (req, res) => {
 router.post('/signup', (req, res) => {
 	const body = req.body;
 	console.log(body)
+	const token = jwt.sign({ sub: user.id }, config.secret, { expiresIn: '7d' });
+		console.log(token)
 	user.insertMany(req.body).then((data) => res.status(200).send(data))
+
 })
 router.post('/login', (req, res) => {
 	const body = req.body
