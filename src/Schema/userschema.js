@@ -16,8 +16,17 @@ const UserSchema = new mongoose.Schema({
 	email: { type: String, required: true }
 
 });
+
+const ProductSchema=new mongoose.Schema({
+	productName: { type: String, required: true},
+	originalPrice:{ type: String, required: true},
+	offerPrice:{ type: String, required: true},
+	categoryId: { type: String, required: true}
+})
 //assigning model to const variable
 const User = mongoose.model("User", UserSchema);
+const Product=mongoose.model("Product",ProductSchema)
 
 //exporting User
 module.exports = User;
+module.exports=Product;
