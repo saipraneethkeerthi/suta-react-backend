@@ -18,46 +18,19 @@ router.post("/signup", (req, res) => {
 });
 router.post("/login", (req, res) => {
   const body = req.body;
-//   console.log(body);
+  // console.log(body);
   user.findOne(body).then((data) => {
+    // console.log(data)
     const tokenGen = jwt.sign({ sub: data._doc._id }, config.secret, {
       expiresIn: "7d",
     });
     const newData = { ...data._doc, token: tokenGen };
     // data.token=tokenGen
-    // console.log(newDate) 
-	if(newData){  
-
-		res.status(200).send(newData);
-	}
-	else{
-		console.log("erre")
-	}
-  });
-});
-
-router.get("/products",(req,res)=>{
+    // console.log(newData) 
 	
-});
-
-router.get("/products/id",(req,res)=>{
-
-});
-
-router.post("/products",(req,res)=>{
-
-});
-
-router.put("/products/id",(req,res)=>{
-
-});
-
-router.delete("/delete_product/id",(req,res)=>{
-
-});
-
-router.delete("/delete_product",(req,res)=>{
-
+		res.status(200).send(newData);
+	
+  });
 });
 
 module.exports = router;
