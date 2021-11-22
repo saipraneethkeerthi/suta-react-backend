@@ -25,7 +25,7 @@ router.get("/products/id", (req, res) => {
 router.post("/products", (req, res) => {
 	const body = req.body;
 	console.log(body);
-	user.insertMany(req.body).then((data) => res.status(200).send(data));
+	product.insertMany(req.body).then((data) => res.status(200).send(data));
 });
 
 router.put("/products/id", (req, res) => {
@@ -39,3 +39,5 @@ router.delete("/delete_product/id", (req, res) => {
 router.delete("/delete_product", (req, res) => {
 
 });
+
+module.exports = router;

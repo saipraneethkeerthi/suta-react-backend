@@ -2,6 +2,10 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const jwt =require('../jwtToken')
+const userroutes = require('../routes/UserRoutes')
+const productRoutes = require('../routes/ProductRoutes')
+
+
 require('../database/connect')
 
 
@@ -18,8 +22,9 @@ const port = 1109;
 
 const cors = require('cors')
 app.use(cors())
-const userroutes = require('../routes/UserRoutes')
 app.use("/", userroutes)
+app.use("/", productRoutes)
+
 
 app.use(express.urlencoded({ extended: true }))
 
