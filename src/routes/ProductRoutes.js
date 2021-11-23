@@ -21,7 +21,12 @@ router.get("/products/:id",auth, async(req, res) => {
 	let id_val=req.params.id
 	console.log(id_val)
 	product.find({_id:id_val},(err,data)=>{
-		if(err) res.status(404).send("No Data Found")
+		if(err) 
+		{
+			res
+				.status(404)
+				.send("No Data Found")
+		}
 		else res.status(200).send(data)		
 	})
 
@@ -30,7 +35,9 @@ router.get("/products/:id",auth, async(req, res) => {
 router.post("/products",auth, (req, res) => {
 	const body = req.body;
 	console.log(body);
-	product.insertMany(req.body).then((data) => res.status(200).send(data));
+	product.insertMany(req.body)
+		.then((data) => res.status(200).send(data))
+		.catch((err)=> res.status(404).send("No Data Found"))
 });
 
 router.put("/product/:id",auth, (req, res) => {
@@ -40,10 +47,16 @@ router.put("/product/:id",auth, (req, res) => {
 		let values={ $set: body }; 
 		console.log(id_val)
 		product.updateOne(query, values, (err,result)=>{
-			if (err) res.status(403).send(err)
+			if (err) 
+			{
+				res
+				.status(403)
+				.send(err)}
 			else{
 					console.log(result)
-					res.status(201).send(result.modifiedCount +"product updated")
+					res
+						.status(201)
+						.send(result.modifiedCount +"product updated")
 			}
 		})
 });
@@ -55,10 +68,16 @@ router.delete("/delete_product/:id",auth, (req, res) => {
 	let query={ id: parseInt(id_val) };
 	let values={ $set: body }; 
 	product.deleteOne(query, values,(err,result)=>{
-		if (err) res.status(403).send(err)
+		if (err) {
+			res
+				.status(403)
+				.send(err)
+			}
 		else{
 				console.log(result)
-				res.status(201).send(result.deletedCount +"product deleted")
+				res
+					.status(201)
+					.send(result.deletedCount +"product deleted")
 		}
 	})
 
@@ -66,10 +85,17 @@ router.delete("/delete_product/:id",auth, (req, res) => {
 
 router.delete("/delete_products",auth, (req, res) => {
 	product.deleteMany((err,result)=>{
-		if (err) res.status(403).send(err)
+		if (err)
+		{
+			 res
+			 .status(403)
+			 .send(err)
+		}
 		else{
 				console.log(result)
-				res.status(201).send("collection deleted")
+				res
+					.status(201)
+					.send("collection deleted")
 		}
 })
 });

@@ -9,7 +9,8 @@ const auth = require("../middlewares/auth")
 router.post("/category",auth,(req, res)=>{
     const body= req.body;
     console.log(body);
-    category.insertMany(req.body).then((data) => res.status(200).send(data));
+    category.insertMany(req.body)
+    .then((data) => res.status(200).send(data));
 });
 
 router.get("/category",auth,(req, res)=>{
