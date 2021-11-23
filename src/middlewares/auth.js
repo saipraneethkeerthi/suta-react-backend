@@ -4,7 +4,10 @@ const User = require("../Schema/UserSchema");
 //USER AUTHENTICATION
 const auth = async (req, res, next) => {
     try {
-        console.log(req.headers)
+        if(req.headers.cookie.includes('jwt')){
+             next();
+        }
+        else res.status(401).send({ error: "please authenticate!" });
         // const token = req.headers("authorization").replace("Bearer ", "");
         // console.log(token)
         // const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -17,7 +20,7 @@ const auth = async (req, res, next) => {
         // }
         // req.token = token;
         // req.user = user;
-        next();
+       
     } catch (e) {
         res.status(401).send({ error: "please authenticate!" });
     }

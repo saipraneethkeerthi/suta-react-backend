@@ -4,21 +4,22 @@ const category = require("../schema/CategorySchema");
 const config = require("../config.json");
 const jwt = require("jsonwebtoken");
 const router = new express.Router();
+const auth = require("../middlewares/auth")
 
-router.post("/category",(req, res)=>{
+router.post("/category",auth,(req, res)=>{
     const body= req.body;
     console.log(body);
     category.insertMany(req.body).then((data) => res.status(200).send(data));
 });
 
-router.get("/category",(req, res)=>{
+router.get("/category",auth,(req, res)=>{
     category.find({},(err,data)=>{
         if(err) res.status(404).send("No Data Found")
         else res.status(200).send(data)
     })
 });
 
-router.get("/category/:id", (req, res)=>{
+router.get("/category/:id",auth, (req, res)=>{
     id_val=req.params.id;
     console.log(id_val);
     category.find({_id:id_val},(err,data)=>{
