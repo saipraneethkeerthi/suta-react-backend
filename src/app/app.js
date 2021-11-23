@@ -14,7 +14,7 @@ const app = express();
 
 // Created use function to get body i.e data
 app.use(express.json())
-app.use(jwt()) 
+// app.use(jwt()) 
 
 
 //Assigning port number to port varaible

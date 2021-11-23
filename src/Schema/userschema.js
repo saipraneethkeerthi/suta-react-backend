@@ -1,5 +1,7 @@
 //Importing npm modules
 const mongoose = require('mongoose')
+const jwt = require("jsonwebtoken");
+
 
 /**
  * creating a scheema of record
@@ -16,6 +18,16 @@ const UserSchema = new mongoose.Schema({
 	email: { type: String, required: true }
 
 });
+
+UserSchema.methods.generateAuthToken = async function () {
+	const user = this;
+	const token = jwt.sign({ _id: user._id.toString() }, "process.env.JWT_SECRET");
+  
+	user.tokens = user.tokens.concat({ token });
+	await user.save();
+  
+	return token;
+  };
 
 //assigning model to const variable
 const User = mongoose.model("User", UserSchema);

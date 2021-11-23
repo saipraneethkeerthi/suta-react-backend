@@ -23,11 +23,22 @@ router.post("/signup",validateEmail,validatePassword, (req, res) => {
 router.post("/login", (req, res) => {
   const body = req.body;
   // console.log(body);
-  user.findOne(body).then((data) => {
+  user.findOne(body).then(async(data) => {
     console.log(data)
     if(data){
+      // const tokenGen = await user.generateAuthToken();
     const tokenGen = jwt.sign({ sub: data._doc._id }, config.secret, {
       expiresIn: "7d",
+    });
+    let d = new Date();
+    d.setDate(d.getDate() + 30);
+  
+     //first-party cookie settings
+    res.cookie('jwt', tokenGen, { 
+       expires: d,
+       httpOnly: true,
+       secure: req.secure || req.headers['x-forwarded-proto'] ===   'https',
+       sameSite: 'none'
     });
     const newData = { ...data._doc, token: tokenGen };
     // data.token=tokenGen
