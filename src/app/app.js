@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const jwt =require('../jwtToken')
 const userroutes = require('../routes/UserRoutes')
 const productRoutes = require('../routes/ProductRoutes')
+const categoryRoutes= require('../routes/CategoryRoutes')
 
 
 require('../database/connect')
@@ -24,6 +25,7 @@ const cors = require('cors')
 app.use(cors())
 app.use("/", userroutes)
 app.use("/", productRoutes)
+app.use("/",categoryRoutes)
 
 
 app.use(express.urlencoded({ extended: true }))
