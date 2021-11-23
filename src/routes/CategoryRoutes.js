@@ -18,7 +18,7 @@ router.get("/category",(req, res)=>{
     })
 });
 
-router.get("/category/id", (req, res)=>{
+router.get("/category/:id", (req, res)=>{
     id_val=req.params.id;
     console.log(id_val);
     category.find({_id:id_val},(err,data)=>{
@@ -26,3 +26,5 @@ router.get("/category/id", (req, res)=>{
         else res.status(200).send(data)
     })
 });
+
+module.exports= router;
