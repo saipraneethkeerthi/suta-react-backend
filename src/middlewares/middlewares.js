@@ -8,15 +8,15 @@
 const validateEmail = (req, res, next) => {
   const emailAddress = req.body.email;
   console.log(emailAddress)
-  let regexEmail =  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   console.log(regexEmail.test(emailAddress))
-  if(regexEmail.test(emailAddress)){
+  if (regexEmail.test(emailAddress)) {
     next()
   }
-  else{
+  else {
     res
-       .status(415)
-       .send("Email is Invalid")
+      .status(406)
+      .send("Email is Invalid")
     next("route")
   }
 }
@@ -64,13 +64,29 @@ const validatePassword = (req, res, next) => {
     next()
   } else {
     res
-       .status(415)
-       .send("Passowrd is not a valid password")
+      .status(415)
+      .send("Passowrd is not a valid password")
+  }
+}
+
+const validateCost=(req,res,next)=>{
+  const originalprice= req.body.originalPrice;
+  const offerprice= req.body.offerPrice;
+  console.log(originalprice)
+  console.log(offerprice)
+  if(Number(originalprice)>Number(offerprice))
+  {
+    next()
+  }
+  else
+  {
+    res.status(406).send("Original price should be greater than offer price")
   }
 }
 
 //Exporting all funcitons.
-module.exports ={
+module.exports = {
   validateEmail,
   validatePassword,
+  validateCost
 }
