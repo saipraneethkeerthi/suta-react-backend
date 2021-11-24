@@ -7,7 +7,9 @@
  */
 const validateEmail = (req, res, next) => {
   const emailAddress = req.body.email;
-  let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  console.log(emailAddress)
+  let regexEmail =  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  console.log(regexEmail.test(emailAddress))
   if(regexEmail.test(emailAddress)){
     next()
   }
@@ -53,7 +55,7 @@ const checkNum = (string) => /\d/.test(string);
 const validatePassword = (req, res, next) => {
   const password = req.body.password;
   if (
-    password.length > 8 &&
+    password.length >= 8 &&
     checkUpperCase(password) &&
     checkLowerCase(password) &&
     checkSymbol(password) &&
