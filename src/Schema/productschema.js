@@ -13,6 +13,7 @@ const ProductSchema=new mongoose.Schema({
 	quantity: { type: String},
 	image: { type:String}
 })
+
 //assigning model to const variable
 const Product=mongoose.model("Product",ProductSchema)
 
