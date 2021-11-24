@@ -5,6 +5,7 @@ const config = require("../config.json");
 const jwt = require("jsonwebtoken");
 const auth =require("../middlewares/auth")
 const router = new express.Router();
+const {validateCost}=require('../middlewares/middlewares')
 
 router.get("/products", auth,(req, res) => {
 	product.find({}).then((data) =>{
@@ -32,7 +33,7 @@ router.get("/products/:id",auth, async(req, res) => {
 
 });
 
-router.post("/products",auth, (req, res) => {
+router.post("/products",auth,validateCost, (req, res) => {
 	const body = req.body;
 	console.log(body);
 	product.insertMany(req.body)
