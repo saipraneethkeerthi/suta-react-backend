@@ -3,9 +3,9 @@ const User = require("../Schema/UserSchema");
 
 //USER AUTHENTICATION
 const auth = async (req, res, next) => {
-    console.log(req.headers)
+    console.log(req.headers) 
     try {
-        if(req.headers.cookie.includes('jwt')){
+        if(req.headers.authorization.includes('JWT')){
              next();
         }
         else res.status(401).send({ error: "please authenticate!" });

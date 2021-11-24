@@ -12,7 +12,7 @@ router.post("/category",auth,(req, res)=>{
     category.insertMany(req.body)
     .then((data) => res.status(200).send(data));
 });
-
+ 
 router.get("/category",auth,(req, res)=>{
     category.find({},(err,data)=>{
         if(err) res.status(404).send("No Data Found")

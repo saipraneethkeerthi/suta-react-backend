@@ -19,8 +19,15 @@ router.post("/signup", validateEmail, validatePassword, (req, res) => {
 	const body = req.body;
 	console.log(body);
 	user.insertMany(req.body)
-	.then((data) => res.status(200).send(data))
-	.catch((err) => res.status(404).send("No Data Found"));
+		.then((data) =>
+			res
+				.status(200)
+				.send(data))
+
+		.catch((err) =>
+			res
+			.status(404)
+			.send("No Data Found"))
 });
 
 router.post("/login", (req, res) => {
