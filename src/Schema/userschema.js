@@ -9,18 +9,16 @@ const jwt = require("jsonwebtoken");
  */
 
 const UserSchema = new mongoose.Schema({
-	userName: { type: String, required: true },
-	password: { type: String, required: true },
-	name: { type: String, required: true },
-	email: { type: String, required: true },
-	gender: { type: String},
-	phoneNumber: { type: Number },
-	address: { type: String},
-	pincode:{ type: String},
+	userName: { type: String, required: true, minLength:3},
+	password: { type: String, required: true, minLength:8},
+	email: { type: String, required: true, maxLength: 50 },
+	gender: { type: String, enum: ["male", "female","transgender"]},
+	phoneNumber: { type: Number, maxLength:12},
+	address: { type: String },
+	pincode:{ type: String, minLength:6},
 	state: { type: String},
 	country: { type: String},
 	cartItems: { type: Array}
-
 });
 
 UserSchema.methods.generateAuthToken = async function () {
