@@ -63,7 +63,7 @@ const validatePassword = (req, res, next) => {
   } else {
     res
        .status(415)
-       .send("Passowrd is not a valid password")
+       .send("Password is not a valid ")
   }
 }
 

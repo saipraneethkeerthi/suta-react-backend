@@ -7,7 +7,7 @@ const jwt = require('./jwtToken')
 
 app.use(express.json());
 app.use(cors());
-app.use(jwt())
+// app.use(jwt())
 
 require("./database/connect")
 
