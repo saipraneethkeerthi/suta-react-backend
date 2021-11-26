@@ -69,6 +69,15 @@ const validatePassword = (req, res, next) => {
   }
 }
 
+/**
+ * Funciton to check weather given password is valid or not
+ * @param {string} req.body.originalprice,req.body.offerprice accesing original price,offerprice form request body
+ * @param {response} res sending response to browser
+ * @param {function} next sending signal to next function that this function is valid or not
+ * @returns {function} it will send response to next funciton that its working
+ * or it will raise error and stops every thing.
+ */
+
 const validateCost=(req,res,next)=>{
   const originalprice= req.body.originalPrice;
   const offerprice= req.body.offerPrice;

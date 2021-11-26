@@ -9,12 +9,7 @@ const { validateEmail, validatePassword } = require("../middlewares/middlewares"
 
 const router = new express.Router();
  
-// router.get("/users", (req, res) => {
-// 	console.log("database post");
-// 	const storeddata = user.find({});
-// 	console.log(storeddata);
-// 	res.status(200).send("");
-// });
+
 router.post("/signup", validateEmail, validatePassword, (req, res) => {
 	const body = req.body;
 	console.log(body);
@@ -32,7 +27,6 @@ router.post("/signup", validateEmail, validatePassword, (req, res) => {
 
 router.post("/login", (req, res) => {
 	const body = req.body;
-	// console.log(body);
 	user.findOne(body).then(async (data) => {
 		console.log(data)
 		if (data) {
