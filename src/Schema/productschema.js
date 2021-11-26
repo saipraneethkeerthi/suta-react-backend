@@ -13,7 +13,7 @@ const ProductSchema = new mongoose.Schema({
   quantity: { type: String },
   image: { type: Array },
   sizechat:{type:Array}
-});
+}); 
  
 //assigning model to const variable
 const Product = mongoose.model("Product", ProductSchema);
