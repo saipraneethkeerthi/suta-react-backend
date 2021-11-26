@@ -33,7 +33,7 @@ router.get("/products/:id",auth, async(req, res) => {
 
 });
 
-router.post("/products",auth,validateCost, (req, res) => {
+router.post("/products",auth, (req, res) => {
 	const body = req.body;
 	console.log(body);
 	product.insertMany(req.body)

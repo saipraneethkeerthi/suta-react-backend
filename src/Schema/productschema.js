@@ -7,11 +7,12 @@ const mongoose = require("mongoose");
  */
 const ProductSchema = new mongoose.Schema({
   productName: { type: String, required: true },
-  originalPrice: { type: String, required: true },
+  originalPrice: { type: String },
   offerPrice: { type: String },
   categoryId: { type: String },
   quantity: { type: String },
   image: { type: Array },
+  sizechat:{type:Array}
 });
  
 //assigning model to const variable
