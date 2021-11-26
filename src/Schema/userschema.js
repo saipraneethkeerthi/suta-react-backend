@@ -21,15 +21,6 @@ const UserSchema = new mongoose.Schema({
 	cartItems: { type: Array}
 });
 
-UserSchema.methods.generateAuthToken = async function () {
-	const user = this;
-	const token = jwt.sign({ _id: user._id.toString() }, "process.env.JWT_SECRET");
-  
-	user.tokens = user.tokens.concat({ token });
-	await user.save();
-  
-	return token;
-  };
 
 //assigning model to const variable
 const User = mongoose.model("User", UserSchema);

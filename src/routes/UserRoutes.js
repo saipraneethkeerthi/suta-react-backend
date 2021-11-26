@@ -8,7 +8,7 @@ const { validateEmail, validatePassword } = require("../middlewares/middlewares"
 
 
 const router = new express.Router();
-
+ 
 // router.get("/users", (req, res) => {
 // 	console.log("database post");
 // 	const storeddata = user.find({});
