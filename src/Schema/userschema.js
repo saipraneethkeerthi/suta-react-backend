@@ -12,13 +12,14 @@ const UserSchema = new mongoose.Schema({
 	userName: { type: String, required: true, minLength:3},
 	password: { type: String, required: true, minLength:8},
 	email: { type: String, required: true, maxLength: 50 },
-	gender: { type: String, enum: ["male", "female","transgender"]},
+	gender: { type: String, enum: ["male", "female","transgender"],required:false},
 	phoneNumber: { type: Number, maxLength:12},
 	address: { type: String },
 	pincode:{ type: String, minLength:6},
 	state: { type: String},
 	country: { type: String},
-	cartItems: { type: Array}
+	cartItems: { type: Array},
+	role:{ type: String,enum:['admin','user']}
 });
 
 

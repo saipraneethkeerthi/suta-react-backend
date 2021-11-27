@@ -22,7 +22,7 @@ router.post("/signup", validateEmail, validatePassword, (req, res) => {
 		.catch((err) =>
 			res
 			.status(404)
-			.send("No Data Found"))
+			.send(err))
 });
 
 router.post("/login", (req, res) => {
