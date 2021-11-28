@@ -57,4 +57,21 @@ router.post("/login", (req, res) => {
 	});
 });
 
+
+router.post("/:id/add_to_cart", (req, res) => {
+	const body = req.body;
+	const id=req.params.id;
+	console.log(id,body);
+	user.updateOne({_id:id},{$set:{cartItems:body}})
+		.then((data) =>
+			res
+				.status(200)
+				.send(data))
+
+		.catch((err) =>
+			res
+			.status(404)
+			.send(err))
+});
+
 module.exports = router;
