@@ -19,7 +19,7 @@ app.use(express.json())
 
 
 //Assigning port number to port varaible
-const port = 1109;
+const port = process.env.PORT || 1109
 
 const cors = require('cors')
 app.use(cors())
