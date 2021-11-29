@@ -1,6 +1,6 @@
 //Importing express and router
 const express = require("express");
-const user = require("../schema/userSchema");
+const user = require("../schemaModels/userSchema");
 const config = require("../config.json");
 const jwt = require("jsonwebtoken");
 const {
