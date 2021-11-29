@@ -12,7 +12,6 @@ const router = new express.Router();
 
 router.post("/signup", validateEmail, validatePassword, (req, res) => {
   const body = req.body;
-  console.log(body);
   user
     .insertMany(req.body)
     .then((data) => res.status(200).send(data))
@@ -23,7 +22,6 @@ router.post("/signup", validateEmail, validatePassword, (req, res) => {
 router.post("/login", (req, res) => {
   const body = req.body;
   user.findOne(body).then(async (data) => {
-    console.log(data);
     if (data) {
       // const tokenGen = await user.generateAuthToken();
       const tokenGen = jwt.sign({ sub: data._doc._id }, config.secret, {
@@ -41,7 +39,6 @@ router.post("/login", (req, res) => {
       });
       const newData = { ...data._doc, token: tokenGen };
       // data.token=tokenGen
-      console.log(newData);
       res.status(200).send(newData);
     } else {
       res.status(406).send("No Data Found");
@@ -52,7 +49,6 @@ router.post("/login", (req, res) => {
 router.post("/:id/add_to_cart", (req, res) => {
   const body = req.body;
   const id = req.params.id;
-  console.log(id, body);
   user
     .updateOne({ _id: id }, { $set: { cartItems: body } })
     .then((data) => res.status(200).send(data))
@@ -64,13 +60,11 @@ router.delete("/:id/add_to_cart/:index", (req, res) => {
   // const body = req.body;
   const id = req.params.id;
   const index = req.params.index;
-  console.log(index);
   user
     .findOne({ _id: id })
     .then((data) => {
       let newArray = [...data.cartItems];
       newArray = newArray.filter((item, i) => index != i);
-      console.log(newArray);
       user
         .updateOne({ _id: id }, { $set: { cartItems: newArray } })
         .then((data) => res.status(200).send(data))

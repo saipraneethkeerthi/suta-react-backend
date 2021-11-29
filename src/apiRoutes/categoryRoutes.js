@@ -8,7 +8,6 @@ const auth = require("../middlewares/auth")
 
 router.post("/category",auth,(req, res)=>{
     const body= req.body;
-    console.log(body);
     category.insertMany(req.body)
     .then((data) => res.status(200).send(data));
 })
@@ -22,7 +21,6 @@ router.get("/category",auth,(req, res)=>{
 
 router.get("/category/:id",auth, (req, res)=>{
     id_val=req.params.id;
-    console.log(id_val);
     category.find({_id:id_val},(err,data)=>{
         if(err) res.status(404).send("No Data Found")
         else res.status(200).send(data)
