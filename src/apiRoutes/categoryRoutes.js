@@ -11,7 +11,7 @@ router.post("/category",auth,(req, res)=>{
     console.log(body);
     category.insertMany(req.body)
     .then((data) => res.status(200).send(data));
-});
+})
   
 router.get("/category",auth,(req, res)=>{
     category.find({},(err,data)=>{
