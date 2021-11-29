@@ -1,6 +1,6 @@
 //Importing express and router
 const express = require("express");
-const category = require("../schema/CategorySchema");
+const category = require("../Schema/CategorySchema");
 const config = require("../config.json");
 const jwt = require("jsonwebtoken");
 const router = new express.Router();
