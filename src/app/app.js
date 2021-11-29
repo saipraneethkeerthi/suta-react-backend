@@ -2,9 +2,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const jwt =require('../jwtToken')
-const userroutes = require('../routes/UserRoutes')
-const productRoutes = require('../routes/ProductRoutes')
-const categoryRoutes= require('../routes/CategoryRoutes')
+const userroutes = require('../routes/userRoutes')
+const productRoutes = require('../routes/productRoutes')
+const categoryRoutes= require('../routes/categoryRoutes')
 
 
 require('../database/connect')

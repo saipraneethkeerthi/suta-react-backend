@@ -1,6 +1,6 @@
 //Importing express and router
 const express = require("express");
-const product = require("../Schema/ProductSchema");
+const product = require("../schema/ProductSchema");
 const config = require("../config.json");
 const jwt = require("jsonwebtoken");
 const auth =require("../middlewares/auth")
