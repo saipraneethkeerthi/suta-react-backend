@@ -85,21 +85,27 @@ router.post("/forgot_password", async (req, res) => {
 
   user
     .findOne({ email: body.email })
-    .then(async(data) => {
-      console.log(data)
-      let testAccount = await nodemailer.createTestAccount();
+    .then(async (data) => {
+      if (data) {
+        console.log(data);
+        let testAccount = await nodemailer.createTestAccount();
 
-      // create reusable transporter object using the default SMTP transport
-      let transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: "xyza28482@gmail.com", // generated ethereal user
-          pass: "Sai@12345", // generated ethereal password
-        },
-      });
-      let info = await transporter.sendMail(template.confirm(data._id,body.email));
+        // create reusable transporter object using the default SMTP transport
+        let transporter = nodemailer.createTransport({
+          service: "gmail",
+          auth: {
+            user: "xyza28482@gmail.com", // generated ethereal user
+            pass: "Sai@12345", // generated ethereal password
+          },
+        });
+        let info = await transporter.sendMail(
+          template.confirm(data._id, body.email)
+        );
 
-      res.status(200).send(data);
+        res.status(200).send(data);
+      } else {
+        res.status(404).send("user not found");
+      }
     })
 
     .catch((err) => res.status(404).send(err));
@@ -111,7 +117,6 @@ router.post("/forgot_password", async (req, res) => {
   // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
   // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 });
-
 
 router.post("/:id/reset_password", (req, res) => {
   const body = req.body;
