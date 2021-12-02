@@ -123,4 +123,21 @@ router.post("/:id/reset_password", (req, res) => {
     .catch((err) => res.status(404).send(err));
 });
 
+router.post("/check_email",(req,res)=>{
+  const body = req.body;
+  user.find({email:body.email}).then((data)=>{
+    console.log(data)
+    if(data.length){
+    res.status(200).send("User already exists")
+    }else{
+      res.status(200).send(data)
+    }
+    
+  }
+  ).catch((err)=>{
+    res.status(404).send(err)
+  })
+
+})
+
 module.exports = router;
