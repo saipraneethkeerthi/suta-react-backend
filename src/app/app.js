@@ -5,6 +5,7 @@ const jwt =require('../jwtToken')
 const userroutes = require('../apiRoutes/userRoute')
 const productRoutes = require('../apiRoutes/productRoute')
 const categoryRoutes= require('../apiRoutes/categoryRoutes')
+const paymentRoutes = require('../apiRoutes/paymentRoutes')
 
 
 require('../database/connect')
@@ -26,6 +27,7 @@ app.use(cors())
 app.use("/", userroutes)
 app.use("/", productRoutes)
 app.use("/",categoryRoutes)
+app.use('/payment',paymentRoutes)
 
 
 app.use(express.urlencoded({ extended: true }))
