@@ -1,7 +1,7 @@
 //Importing mongoose
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); 
 //Connected to Database 
-const url = "mongodb+srv://athumma:Akhila%40123@cluster0.iiybw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+const url = process.env.MONGODB_URL 
 mongoose
 	.connect(url, {
 		useNewUrlParser: true,
