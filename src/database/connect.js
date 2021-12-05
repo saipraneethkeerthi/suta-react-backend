@@ -1,7 +1,7 @@
 //Importing mongoose
 const mongoose = require('mongoose'); 
 //Connected to Database 
-const url = process.env.MONGODB_URL 
+const url = process.env.MONGODB_URL  
 mongoose
 	.connect(url, {
 		useNewUrlParser: true,
